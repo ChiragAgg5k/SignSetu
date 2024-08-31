@@ -2,8 +2,9 @@ import { LanguageContext } from "@/components/LanguageContext";
 import { Box } from "@/components/ui/box";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
 import React, { useContext } from "react";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const CardContainer = ({ title, image }: { title: string, image: any }) => {
@@ -13,7 +14,7 @@ const CardContainer = ({ title, image }: { title: string, image: any }) => {
             source={image}
             className="w-full h-40"
         />
-        <Heading size="md" className="mb-1 text-center mt-4 ">
+        <Heading size="md" className="mb-1 text-black text-center mt-4 ">
             {title}
         </Heading>
     </Card>
@@ -34,7 +35,7 @@ const Index = () => {
                     {translate("Welcome to Inclusive Education")}
                 </Heading>
                 <Text
-                    className="text-left font-semibold text-lg text-gray-700">
+                    className="text-left font-semibold text-lg ">
                     Learn Gujarati through Indian Sign Language
                 </Text>
             </Box>

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
 
 type LanguageContextType = {
     language: string;
@@ -21,39 +21,7 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
     const API_KEY = 'YOUR_GOOGLE_TRANSLATE_API_KEY';
     const API_URL = 'https://translation.googleapis.com/language/translate/v2';
 
-    useEffect(() => {
-        loadLanguage();
-    }, []);
-
-    const loadLanguage = async () => {
-        try {
-            const savedLanguage = await AsyncStorage.getItem('language');
-            if (savedLanguage) {
-                setLanguage(savedLanguage);
-                if (savedLanguage !== 'en') {
-                    await loadTranslations(savedLanguage);
-                }
-            }
-        } catch (error) {
-            console.error('Error loading language:', error);
-        }
-    };
-
-    const changeLanguage = async (newLanguage: string) => {
-        try {
-            await AsyncStorage.setItem('language', newLanguage);
-            setLanguage(newLanguage);
-            if (newLanguage !== 'en') {
-                await loadTranslations(newLanguage);
-            } else {
-                setTranslations({});
-            }
-        } catch (error) {
-            console.error('Error changing language:', error);
-        }
-    };
-
-    const loadTranslations = async (targetLanguage: string) => {
+    const loadTranslations = useCallback(async (targetLanguage: string) => {
         try {
             const response = await axios.post(
                 `${API_URL}?key=${API_KEY}`,
@@ -72,11 +40,43 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
         } catch (error) {
             console.error('Error loading translations:', error);
         }
+    }, [translations]);
+
+    const loadLanguage = useCallback(async () => {
+        try {
+            const savedLanguage = await AsyncStorage.getItem('language');
+            if (savedLanguage) {
+                setLanguage(savedLanguage);
+                if (savedLanguage !== 'en') {
+                    await loadTranslations(savedLanguage);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading language:', error);
+        }
+    }, [loadTranslations]);
+
+    const changeLanguage = async (newLanguage: string) => {
+        try {
+            await AsyncStorage.setItem('language', newLanguage);
+            setLanguage(newLanguage);
+            if (newLanguage !== 'en') {
+                await loadTranslations(newLanguage);
+            } else {
+                setTranslations({});
+            }
+        } catch (error) {
+            console.error('Error changing language:', error);
+        }
     };
 
     const translate = (key: string) => {
         return translations[key] || key;
     };
+
+    useEffect(() => {
+        loadLanguage();
+    }, [loadLanguage]);
 
     return (
         <LanguageContext.Provider value={{ language, changeLanguage, translate }}>
