@@ -1,10 +1,9 @@
-import { LanguageContext } from "@/components/LanguageContext";
 import { Box } from "@/components/ui/box";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { router } from "expo-router";
-import React, { useContext } from "react";
+import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -29,13 +28,12 @@ const CardContainer = ({ title, image, navigateTo }: { title: string, image: any
 }
 
 const Index = () => {
-    const { translate } = useContext(LanguageContext);
 
     return (
         <SafeAreaView style={styles.container}>
             <Box style={styles.headerBox}>
                 <Heading size="2xl" style={styles.mainHeading}>
-                    {translate("Welcome to Inclusive Education")}
+                    Welcome to Gujarati Sign Language
                 </Heading>
                 <Text style={styles.subHeading}>
                     Learn Gujarati through Indian Sign Language

@@ -7,8 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { LanguageProvider } from "@/components/LanguageContext";
-import LanguageToggle from "@/components/LanguageToggle";
+import { Button, ButtonText } from "@/components/ui/button";
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 SplashScreen.preventAutoHideAsync();
@@ -31,17 +30,19 @@ export default function RootLayout() {
 
   return (
     <GluestackUIProvider mode={(colorScheme ?? "light") as "light" | "dark"}><ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <LanguageProvider>
-        <Stack screenOptions={{ headerShown: true }}>
-          <Stack.Screen name="index" options={{
-            title: "Sign-Setu",
-            headerRight: () => (
-              <LanguageToggle />
-            )
-          }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </LanguageProvider>
+      <Stack screenOptions={{ headerShown: true }}>
+        <Stack.Screen name="index" options={{
+          title: "Sign-Setu",
+          headerRight: () => (
+            <Button>
+              <ButtonText>
+                Switch To Gujarati
+              </ButtonText>
+            </Button>
+          )
+        }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
     </ThemeProvider></GluestackUIProvider>
   );
 }
