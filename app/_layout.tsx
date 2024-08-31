@@ -41,6 +41,9 @@ export default function RootLayout() {
             </Button>
           )
         }} />
+        <Stack.Screen name="alphabets" options={{
+          title: "Alphabets"
+        }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider></GluestackUIProvider>
