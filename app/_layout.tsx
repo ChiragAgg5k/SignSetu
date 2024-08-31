@@ -7,10 +7,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { Button, ButtonText } from "@/components/ui/button";
+import { LanguageProvider } from "@/components/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 import { useColorScheme } from '@/hooks/useColorScheme';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -31,17 +31,17 @@ export default function RootLayout() {
 
   return (
     <GluestackUIProvider mode={(colorScheme ?? "light") as "light" | "dark"}><ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerShown: true }}>
-        <Stack.Screen name="index" options={{
-          title: "Sign-Setu",
-          headerRight: () => (
-            <Button size="md" variant="solid" action="primary" >
-              <ButtonText>Login</ButtonText>
-            </Button>
-          )
-        }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+      <LanguageProvider>
+        <Stack screenOptions={{ headerShown: true }}>
+          <Stack.Screen name="index" options={{
+            title: "Sign-Setu",
+            headerRight: () => (
+              <LanguageToggle />
+            )
+          }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </LanguageProvider>
     </ThemeProvider></GluestackUIProvider>
   );
 }

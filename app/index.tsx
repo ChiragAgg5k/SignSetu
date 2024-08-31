@@ -1,7 +1,8 @@
+import { LanguageContext } from "@/components/LanguageContext";
 import { Box } from "@/components/ui/box";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
-import React from "react";
+import React, { useContext } from "react";
 import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -19,6 +20,9 @@ const CardContainer = ({ title, image }: { title: string, image: any }) => {
 }
 
 const Index = () => {
+
+    const { translate } = useContext(LanguageContext);
+
     return (
         <SafeAreaView style={{
             paddingTop: -35,
@@ -27,7 +31,7 @@ const Index = () => {
         }}>
             <Box className="mb-6">
                 <Heading size="2xl" className="text-left mt-4 mb-2">
-                    Welcome to Inclusive Education
+                    {translate("Welcome to Inclusive Education")}
                 </Heading>
                 <Text
                     className="text-left font-semibold text-lg text-gray-700">

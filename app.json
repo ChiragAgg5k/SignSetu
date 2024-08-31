@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SignSetu",
-    "slug": "SignSetu",
+    "slug": "sign-setu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.chiragagg5k.signsetu"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "752d16b0-7f6e-4973-9a94-5e9b3ef7e50d"
+      }
+    },
+    "owner": "chiragagg5k"
   }
 }
