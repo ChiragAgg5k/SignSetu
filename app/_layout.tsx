@@ -9,6 +9,7 @@ import 'react-native-reanimated';
 
 import { Button, ButtonText } from "@/components/ui/button";
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Image } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,6 +34,12 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: true }}>
         <Stack.Screen name="index" options={{
           title: "Sign-Setu",
+          headerLeft: () => (
+            <Image
+              source={require("@/assets/images/icon.png")}
+              style={{ width: 40, height: 40, marginRight: 5 }}
+            />
+          ),
           headerRight: () => (
             <Button>
               <ButtonText>
@@ -43,6 +50,9 @@ export default function RootLayout() {
         }} />
         <Stack.Screen name="alphabets" options={{
           title: "Alphabets"
+        }} />
+        <Stack.Screen name="numbers" options={{
+          title: "Numbers"
         }} />
         <Stack.Screen name="+not-found" />
       </Stack>

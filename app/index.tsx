@@ -50,7 +50,7 @@ const Index = () => {
                 <CardContainer
                     title="Numbers"
                     image={require("@/assets/images/signs/numbers.png")}
-                    navigateTo="NumbersScreen"
+                    navigateTo="numbers"
                 />
             </View>
 
