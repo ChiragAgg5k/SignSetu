@@ -3,62 +3,125 @@ import { Box } from "@/components/ui/box";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import { router } from "expo-router";
 import React, { useContext } from "react";
-import { Image, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const CardContainer = ({ title, image }: { title: string, image: any }) => {
-    return <Card
-        size="md" variant="outline" className="flex-1 mx-2 bg-white">
-        <Image
-            source={image}
-            className="w-full h-40"
-        />
-        <Heading size="md" className="mb-1 text-black text-center mt-4 ">
-            {title}
-        </Heading>
-    </Card>
+const CardContainer = ({ title, image, navigateTo }: { title: string, image: any, navigateTo: any }) => {
+
+    return (
+        <TouchableOpacity
+            onPress={() => router.push(navigateTo)}
+            style={styles.cardTouchable}
+        >
+            <Card style={styles.card}>
+                <Image
+                    source={image}
+                    style={styles.cardImage}
+                />
+                <Heading size="md" style={styles.cardTitle}>
+                    {title}
+                </Heading>
+            </Card>
+        </TouchableOpacity>
+    );
 }
 
 const Index = () => {
-
     const { translate } = useContext(LanguageContext);
 
     return (
-        <SafeAreaView style={{
-            paddingTop: -35,
-            paddingLeft: 15,
-            paddingRight: 15,
-        }}>
-            <Box className="mb-6">
-                <Heading size="2xl" className="text-left mt-4 mb-2">
+        <SafeAreaView style={styles.container}>
+            <Box style={styles.headerBox}>
+                <Heading size="2xl" style={styles.mainHeading}>
                     {translate("Welcome to Inclusive Education")}
                 </Heading>
-                <Text
-                    className="text-left font-semibold text-lg ">
+                <Text style={styles.subHeading}>
                     Learn Gujarati through Indian Sign Language
                 </Text>
             </Box>
 
-
-            <Heading size="md" className="text-left mb-2">Alphabets & Numbers</Heading>
-            <View
-                className="flex flex-row justify-between"
-            >
-                <CardContainer title="Alphabets" image={require("@/assets/images/signs/alphabets.png")} />
-                <CardContainer title="Numbers" image={require("@/assets/images/signs/numbers.png")} />
+            <Heading size="md" style={styles.sectionHeading}>Alphabets & Numbers</Heading>
+            <View style={styles.row}>
+                <CardContainer
+                    title="Alphabets"
+                    image={require("@/assets/images/signs/alphabets.png")}
+                    navigateTo="alphabets"
+                />
+                <CardContainer
+                    title="Numbers"
+                    image={require("@/assets/images/signs/numbers.png")}
+                    navigateTo="NumbersScreen"
+                />
             </View>
 
-            <Heading size="md" className="text-left mt-6 mb-2">Words & Calculation</Heading>
-            <View
-                className="flex flex-row justify-between"
-            >
-                <CardContainer title="Words" image={require("@/assets/images/signs/words.png")} />
-                <CardContainer title="Calculation" image={require("@/assets/images/signs/calculation.png")} />
+            <Heading size="md" style={styles.sectionHeading}>Words & Calculation</Heading>
+            <View style={styles.row}>
+                <CardContainer
+                    title="Words"
+                    image={require("@/assets/images/signs/words.png")}
+                    navigateTo="WordsScreen"
+                />
+                <CardContainer
+                    title="Calculation"
+                    image={require("@/assets/images/signs/calculation.png")}
+                    navigateTo="CalculationScreen"
+                />
             </View>
-
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingHorizontal: 15,
+        paddingTop: -20,
+    },
+    headerBox: {
+        marginBottom: 24,
+    },
+    mainHeading: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginBottom: 8,
+    },
+    subHeading: {
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    sectionHeading: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 12,
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20,
+    },
+    cardTouchable: {
+        flex: 1,
+        marginHorizontal: 4,
+    },
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+        overflow: 'hidden',
+    },
+    cardImage: {
+        width: '100%',
+        height: 120,
+        resizeMode: 'cover',
+    },
+    cardTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: 8,
+        marginBottom: 8,
+    },
+});
 
 export default Index;
