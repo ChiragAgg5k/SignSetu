@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const BACKEND_URL = process.env.EXPO_PUBLIC_BACKEND_URL as string;
 
 const Index = () => {
     const [facing, setFacing] = useState<CameraType>('back');
@@ -63,7 +62,7 @@ const Index = () => {
 
     async function sendFrameForPrediction(base64Image: string) {
         try {
-            const response = await fetch(`${BACKEND_URL}/predict`, {
+            const response = await fetch("https://sih.rachitkhurana.tech/predict", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

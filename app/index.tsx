@@ -54,17 +54,11 @@ const Index = () => {
                 />
             </View>
 
-            <Heading size="md" style={styles.sectionHeading}>Words & Calculation</Heading>
             <View style={styles.row}>
                 <CardContainer
-                    title="Words"
+                    title="Text to Sign Language"
                     image={require("@/assets/images/signs/words.png")}
-                    navigateTo="WordsScreen"
-                />
-                <CardContainer
-                    title="Calculation"
-                    image={require("@/assets/images/signs/calculation.png")}
-                    navigateTo="CalculationScreen"
+                    navigateTo="speech"
                 />
             </View>
         </SafeAreaView>
@@ -90,7 +84,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     sectionHeading: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 12,
     },

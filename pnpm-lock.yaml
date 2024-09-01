@@ -23,6 +23,9 @@ importers:
       '@gluestack-ui/checkbox':
         specifier: ^0.1.31
         version: 0.1.31(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      '@gluestack-ui/divider':
+        specifier: ^0.1.9
+        version: 0.1.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@gluestack-ui/form-control':
         specifier: ^0.1.18
         version: 0.1.18(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -47,6 +50,9 @@ importers:
       '@gluestack-ui/spinner':
         specifier: ^0.1.14
         version: 0.1.14(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@gluestack-ui/textarea':
+        specifier: ^0.1.23
+        version: 0.1.23(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@gluestack-ui/toast':
         specifier: ^1.0.7
         version: 1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -1209,6 +1215,12 @@ packages:
       react: '>=16'
       react-dom: '>=16'
 
+  '@gluestack-ui/divider@0.1.9':
+    resolution: {integrity: sha512-wuQDEfgZwBoxxd9AKTNKxUK5W7EZ1SiuYpEljm77yekV3vw86t6X1AIJ+zIjDaOFzlNcvWx9ZD8NRXtRkDFiHw==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
   '@gluestack-ui/form-control@0.1.18':
     resolution: {integrity: sha512-sVRdh5qZwZGddMiHTG0IHEEktO6iwgKFSoccjmK7P7U/shWt7xAdt5Hh2Rp7+2C/g02v76uFlycI+GhtbnwLGw==}
     peerDependencies:
@@ -1271,6 +1283,12 @@ packages:
 
   '@gluestack-ui/spinner@0.1.14':
     resolution: {integrity: sha512-6uLUvyJMhYR/sIMU/purfaYPqaKiLqnBi0n0LiWRsJNGDgENqdWVHMJpGTdWaFuCLxumZ7xnp0wG2KAdG9UyyQ==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+
+  '@gluestack-ui/textarea@0.1.23':
+    resolution: {integrity: sha512-yZmCoj+0ZHkdqKMY/VTaW6AZ2EVGgaP4WOmXFnglWYsRDH+ZVUuBPYUJeqfko3WZ3gjgcS5vL+NKV98zirtyaA==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -7788,6 +7806,11 @@ snapshots:
     transitivePeerDependencies:
       - react-native
 
+  '@gluestack-ui/divider@0.1.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
   '@gluestack-ui/form-control@0.1.18(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -7885,6 +7908,16 @@ snapshots:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+
+  '@gluestack-ui/textarea@0.1.23(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@gluestack-ui/form-control': 0.1.18(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      '@gluestack-ui/utils': 0.1.13(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      '@react-native-aria/focus': 0.2.9(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - react-native
 
   '@gluestack-ui/toast@1.0.7(react-dom@18.2.0(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)':
     dependencies:

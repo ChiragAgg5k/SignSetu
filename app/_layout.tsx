@@ -55,6 +55,9 @@ export default function RootLayout() {
                 </Button>
               )
             }} />
+            <Stack.Screen name="speech" options={{
+              title: "Text"
+            }} />
             <Stack.Screen name="alphabets" options={{
               title: "Alphabets"
             }} />
