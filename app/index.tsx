@@ -33,10 +33,10 @@ const Index = () => {
         <SafeAreaView style={styles.container}>
             <Box style={styles.headerBox}>
                 <Heading size="2xl" style={styles.mainHeading}>
-                    Welcome to Gujarati Sign Language
+                    Welcome to Inclusive Learning
                 </Heading>
                 <Text style={styles.subHeading}>
-                    Learn Gujarati through Indian Sign Language
+                    Learn Gujarati/English through Indian Sign Language
                 </Text>
             </Box>
 
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     subHeading: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: '600',
     },
     sectionHeading: {
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 8,
+        color: 'black',
         marginBottom: 8,
     },
 });

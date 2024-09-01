@@ -1,3 +1,4 @@
+import { Heading } from '@/components/ui/heading'
 import { useAuth } from '@clerk/clerk-expo'
 import { Redirect, Stack } from 'expo-router'
 
@@ -10,7 +11,8 @@ export default function AuthRoutesLayout() {
 
     return <Stack screenOptions={
         {
-            title: 'Sign In'
+            title: 'Sign In',
+            headerTitle: () => <Heading></Heading>
         }
     } />
 }

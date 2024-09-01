@@ -1,14 +1,24 @@
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
 import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { useEffect, useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+const BACKEND_URL = process.env.EXPO_PUBLIC_BACKEND_URL as string;
 
 const Index = () => {
     const [facing, setFacing] = useState<CameraType>('back');
     const [permission, requestPermission] = useCameraPermissions();
+    const [prediction, setPrediction] = useState('');
+    const cameraRef = useRef<CameraView>(null);
+
+    useEffect(() => {
+        if (permission?.granted) {
+            startProcessing();
+        }
+    }, [permission]);
 
     if (!permission) {
         return <View />;
@@ -31,9 +41,74 @@ const Index = () => {
         setFacing(current => (current === 'back' ? 'front' : 'back'));
     }
 
+    async function captureFrame() {
+        if (cameraRef.current) {
+            try {
+                const photo = await cameraRef.current.takePictureAsync({
+                    quality: 0.5,
+                    base64: true,
+                });
+
+                if (!photo) {
+                    return null;
+                }
+
+                return photo.base64;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        return null;
+    }
+
+    async function sendFrameForPrediction(base64Image: string) {
+        try {
+            const timeStamp = new Date().getTime();
+            const response = await fetch(`https://sih2.rachitkhurana.tech/predict`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ image: base64Image })
+            });
+            const timeTaken = new Date().getTime() - timeStamp;
+            // console.log("Time taken:", timeTaken);
+
+            const result = await response.json();
+            return result.result || "No hand detected";
+        } catch (error) {
+            console.error("Error sending frame for prediction:", error);
+            return "Error processing image";
+        }
+    }
+
+    async function processFrame() {
+        let base64Image = await captureFrame();
+        base64Image = base64Image?.replace("data:image/png;base64,", '');
+        if (base64Image) {
+            const result = await sendFrameForPrediction(base64Image);
+
+            if (result.toLowerCase().includes("error")) {
+                return;
+            }
+
+            setPrediction(result);
+        }
+    }
+
+    async function startProcessing() {
+        while (true) {
+            const timeStamp = new Date().getTime();
+            processFrame();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            const timeTaken = new Date().getTime() - timeStamp;
+            console.log("Frame time:", timeTaken);
+        }
+    }
+
     return (
         <SafeAreaView style={styles.container}>
-            <CameraView style={styles.camera} facing={facing}>
+            <CameraView style={styles.camera} facing={facing} ref={cameraRef} animateShutter={false}>
                 <View style={styles.buttonContainer}>
                     <Button style={styles.button} onPress={toggleCameraFacing}>
                         <ButtonText>Flip Camera</ButtonText>
@@ -51,7 +126,7 @@ const Index = () => {
                 <Text
                     className='text-xl font-bold'
                 >
-                    A
+                    {prediction}
                 </Text>
             </Box>
         </SafeAreaView>

@@ -257,6 +257,11 @@ const Index = () => {
                     <HStack className="self-center ">
                         <Text size="md">Don't have an account?</Text>
                         <LinkText
+                            onPress={
+                                () => {
+                                    router.push('/sign-up')
+                                }
+                            }
                             className="font-medium text-primary-700 ml-1 group-hover/link:text-primary-600  group-hover/pressed:text-primary-700"
                             size="md"
                         >
